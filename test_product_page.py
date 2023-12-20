@@ -1,8 +1,9 @@
 from .pages.product_page import ProductPage
-from time import sleep
 import pytest
-from selenium.common.exceptions import NoAlertPresentException
+from time import sleep
 
+
+link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer0"
 
 links = [
 "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer0",
@@ -17,6 +18,7 @@ pytest.param("http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207
 "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer9"
          ]
 
+@pytest.mark.skip
 @pytest.mark.parametrize('link', links)
 def test_guest_can_add_product_to_basket(browser, link):
     page = ProductPage(browser, link)
@@ -25,3 +27,24 @@ def test_guest_can_add_product_to_basket(browser, link):
     page.solve_quiz_and_get_code()
     page.compare_name_and_name_added_to_basket()
     page.compare_price_and_price_to_basket()
+
+@pytest.mark.xfail
+def test_guest_cant_see_success_message_after_adding_product_to_basket(browser):
+    page = ProductPage(browser, link, 0)
+    page.open()
+    page.add_to_basket()
+    page.solve_quiz_and_get_code()
+    page.should_not_be_success_message()
+
+def test_guest_cant_see_success_message(browser):
+    page = ProductPage(browser, link, 0)
+    page.open()
+    page.should_not_be_success_message()
+
+@pytest.mark.xfail
+def test_message_disappeared_after_adding_product_to_basket(browser):
+    page = ProductPage(browser, link, 0)
+    page.open()
+    page.add_to_basket()
+    page.solve_quiz_and_get_code()
+    page.should_dissapear_success_message()

@@ -14,3 +14,4 @@ class ProductPageLocators():
     PRICE = (By.CSS_SELECTOR, ".product_main>.price_color")
     BASKET_NAME = (By.CSS_SELECTOR, "#messages :first-child .alertinner>strong")
     BASKET_PRICE = (By.CSS_SELECTOR, ".alertinner>p>strong")
+    SUCCESS_MESSAGE = (By.CSS_SELECTOR, ".alert-success")
