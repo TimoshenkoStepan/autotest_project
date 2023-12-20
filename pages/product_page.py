@@ -1,7 +1,7 @@
 from .base_page import BasePage
 import math
 from .locators import ProductPageLocators
-
+from selenium.common.exceptions import NoAlertPresentException
 
 class ProductPage(BasePage):
     def add_to_basket(self):
