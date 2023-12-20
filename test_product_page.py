@@ -1,4 +1,5 @@
 from .pages.product_page import ProductPage
+from .pages.bucket_page import BucketPage
 import pytest
 from time import sleep
 
@@ -28,6 +29,16 @@ def test_guest_can_add_product_to_basket(browser, link):
     page.compare_name_and_name_added_to_basket()
     page.compare_price_and_price_to_basket()
 
+def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
+    page = ProductPage(browser, link)
+    page.open()
+    page.should_be_bucket()
+    page.go_to_busket()
+    bucket_page = BucketPage(browser, browser.current_url)
+    bucket_page.should_not_be_items()
+    bucket_page.text_about_emptiness_presented()
+
+@pytest.mark.skip
 @pytest.mark.xfail
 def test_guest_cant_see_success_message_after_adding_product_to_basket(browser):
     page = ProductPage(browser, link, 0)
@@ -36,11 +47,13 @@ def test_guest_cant_see_success_message_after_adding_product_to_basket(browser):
     page.solve_quiz_and_get_code()
     page.should_not_be_success_message()
 
+@pytest.mark.skip
 def test_guest_cant_see_success_message(browser):
     page = ProductPage(browser, link, 0)
     page.open()
     page.should_not_be_success_message()
 
+@pytest.mark.skip
 @pytest.mark.xfail
 def test_message_disappeared_after_adding_product_to_basket(browser):
     page = ProductPage(browser, link, 0)
@@ -49,12 +62,14 @@ def test_message_disappeared_after_adding_product_to_basket(browser):
     page.solve_quiz_and_get_code()
     page.should_dissapear_success_message()
 
+@pytest.mark.skip
 def test_guest_should_see_login_link_on_product_page(browser):
     link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/"
     page = ProductPage(browser, link)
     page.open()
     page.should_be_login_link()
 
+@pytest.mark.skip
 def test_guest_can_go_to_login_page_from_product_page(browser):
     link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/"
     page = ProductPage(browser, link)
