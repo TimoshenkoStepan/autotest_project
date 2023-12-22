@@ -8,7 +8,6 @@ def pytest_addoption(parser):
 
 @pytest.fixture(scope="function")
 def browser(request):
-    """Returns the Chrome browser in the selected language"""
     language = request.config.getoption("language") or 'en'
     options = Options()
     options.add_experimental_option('prefs', {'intl.accept_languages': language})
