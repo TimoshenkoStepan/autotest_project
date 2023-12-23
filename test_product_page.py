@@ -4,8 +4,8 @@ from .pages.login_page import LoginPage
 import pytest
 import time
 
-
 link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer0"
+
 
 class TestUserAddToBasketFromProductPage():
     @pytest.fixture(scope="function", autouse=True)
@@ -29,6 +29,7 @@ class TestUserAddToBasketFromProductPage():
     def test_user_cant_see_success_message(self):
         self.page.should_not_be_success_message()
 
+
 @pytest.mark.need_review
 def test_guest_can_add_product_to_basket(browser):
     page = ProductPage(browser, link)
@@ -37,6 +38,7 @@ def test_guest_can_add_product_to_basket(browser):
     page.solve_quiz_and_get_code()
     page.compare_name_and_name_added_to_basket()
     page.compare_price_and_price_to_basket()
+
 
 @pytest.mark.need_review
 def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
@@ -48,6 +50,7 @@ def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
     basket_page.should_not_be_items()
     basket_page.text_about_emptiness_presented()
 
+
 @pytest.mark.xfail
 def test_guest_cant_see_success_message_after_adding_product_to_basket(browser):
     page = ProductPage(browser, link, 0)
@@ -56,10 +59,12 @@ def test_guest_cant_see_success_message_after_adding_product_to_basket(browser):
     page.solve_quiz_and_get_code()
     page.should_not_be_success_message()
 
+
 def test_guest_cant_see_success_message(browser):
     page = ProductPage(browser, link, 0)
     page.open()
     page.should_not_be_success_message()
+
 
 @pytest.mark.xfail
 def test_message_disappeared_after_adding_product_to_basket(browser):
@@ -69,11 +74,13 @@ def test_message_disappeared_after_adding_product_to_basket(browser):
     page.solve_quiz_and_get_code()
     page.should_dissapear_success_message()
 
+
 def test_guest_should_see_login_link_on_product_page(browser):
     link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/"
     page = ProductPage(browser, link)
     page.open()
     page.should_be_login_link()
+
 
 @pytest.mark.need_review
 def test_guest_can_go_to_login_page_from_product_page(browser):

@@ -3,6 +3,7 @@ import math
 from .locators import ProductPageLocators
 from selenium.common.exceptions import NoAlertPresentException
 
+
 class ProductPage(BasePage):
     def add_to_basket(self):
         add_btn = self.browser.find_element(*ProductPageLocators.ADD_TO_BASKET)
@@ -39,8 +40,3 @@ class ProductPage(BasePage):
             alert.accept()
         except NoAlertPresentException:
             print("No second alert presented")
-
-
-
-        
-        

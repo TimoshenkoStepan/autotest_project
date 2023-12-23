@@ -10,7 +10,7 @@ class LoginPage(BasePage):
         self.filling_out_registration_password_field(password)
         self.filling_out_registration_repeat_password_field(password)
         self.click_registration_button()
-    
+
     def should_be_login_form(self):
         assert self.is_element_present(*LoginPageLocators.LOGIN_FORM), "Login form not found"
 
@@ -26,9 +26,9 @@ class LoginPage(BasePage):
         assert self.is_element_present(*LoginPageLocators.REGISTER_FORM), "Register form not found"
         assert self.is_element_present(*LoginPageLocators.REGISTRATION_BUTTON), "Registration button not found"
         assert self.is_element_present(*LoginPageLocators.REGISTRATION_EMAIL), "Registration email not found"
-        assert self.is_element_present(*LoginPageLocators.REGISTRATION_PASSWORD),\
+        assert self.is_element_present(*LoginPageLocators.REGISTRATION_PASSWORD), \
             "Registration password not found"
-        assert self.is_element_present(*LoginPageLocators.REGISTRATION_PASSWORD_REPEAT),\
+        assert self.is_element_present(*LoginPageLocators.REGISTRATION_PASSWORD_REPEAT), \
             "Registration repeat password not found"
 
     def filling_out_registration_emial_field(self, email):
@@ -46,4 +46,3 @@ class LoginPage(BasePage):
     def click_registration_button(self):
         registation_button = self.browser.find_element(*LoginPageLocators.REGISTRATION_BUTTON)
         registation_button.click()
-
