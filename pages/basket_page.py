@@ -10,6 +10,3 @@ class BasketPage(BasePage):
     def text_about_emptiness_presented(self):
         assert self.is_element_present(*BasketPageLocators.TEXT_ABOUT_EMPTINESS), \
             "The text about emptiness was not found"
-
-
-        
